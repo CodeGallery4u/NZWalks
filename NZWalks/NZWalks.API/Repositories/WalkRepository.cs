@@ -20,6 +20,7 @@ namespace NZWalks.API.Repositories
         public async Task<Walk> AddAsync(Walk walk)
         {
             await _dbContext.Walks.AddAsync(walk);
+            await _dbContext.SaveChangesAsync();
             return walk;
         }
 
@@ -41,7 +42,7 @@ namespace NZWalks.API.Repositories
             return await _dbContext.Walks.FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public async Task<IEnumerable<Walk>> Getll()
+        public async Task<IEnumerable<Walk>> GetAll()
         {
             return await _dbContext.Walks.ToListAsync();
         }
